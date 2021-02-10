@@ -121,7 +121,7 @@
                     <form method="post" action="{{route ('delete.libraries', $data->id) }}">
                         @csrf
                         @method('delete')
-                                <button class="button btn btn-primary text-light font-weight-bold " value="{{$data->id}}" type="submit">{{$data->title}}</button>
+                                <button class="button btn btn-primary text-light font-weight-bold "  onclick="deleteBook({{$data->id}})" value="{{$data->id}}" type="submit">Delete {{$data->title}} ?</button>
                                 <br><br>
                     </form>
                     @endforeach
@@ -149,8 +149,8 @@
                     <form method="post" action="{{route ('delete.book', $data->id) }}">
                         @csrf
                         @method('delete')
-                                <button class="button btn btn-primary text-light font-weight-bold " value="{{$data->id}}" 
-                                    type="button" onclick="deleteConfirmation({{$data->id}})">{{$data->title}}
+                                <button class="button btn btn-danger text-light font-weight-bold " value="{{$data->id}}" 
+                                    type="submit" onclick="deleteBook({{$data->id}})">Delete {{$data->title}} ?
                                 </button>
                                 <br><br>
                     </form>
@@ -167,23 +167,13 @@
 </div>
 
 <script type="text/javascript">
-    function deleteConfirmation(id) {
+    function deleteBook(id) {
         Swal.fire({
-  title: 'Are you sure?',
-  text: "You won't be able to revert this!",
-  icon: 'warning',
-  showCancelButton: true,
-  confirmButtonColor: '#3085d6',
-  cancelButtonColor: '#d33',
-  confirmButtonText: 'Yes, delete it!'
-}).then((result) => {
-  if (result.isConfirmed) {
-    Swal.fire(
-      'Deleted!',
-      'Your file has been deleted.',
-      'success'
-    )
-  }
+  position: 'top-end',
+  icon: 'success',
+  title: 'Your Data has been deleted',
+  showConfirmButton: false,
+  timer: 1500
 })
     }
 </script>
