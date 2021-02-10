@@ -31,6 +31,10 @@ class BookController extends Controller
     protected function destroy($id){
         $books= Book::findorfail($id);
         $books->delete();
-        return redirect()->back()->with('delete', 'Book has been delete');
+        
+        return response()->json([
+            'success' => true,
+            'message' => "Books Deleted",
+        ]);
     }
 }
