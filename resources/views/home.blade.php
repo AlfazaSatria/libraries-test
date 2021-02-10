@@ -2,65 +2,31 @@
 
 @section('content')
 <div class="container">
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#create">
+        <i class="nav-icon fas fa-folder-plus"></i> &nbsp; Add Libraries
+    </button>
     <div class="row">
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#create">
-            <i class="nav-icon fas fa-folder-plus"></i> &nbsp; Add Libraries
-        </button>
-        <div class="col-md-4">
-            <div class="card mb-4 shadow-lg">
-                <div class="card-body">
-                    <h4 class="card-title text-center font-weight-bold">Libraries A</h4>
-                    <div class="row">
-                        <div class="col-xs-4 col-4">
-                            book A
-                        </div>
-                        <div class="col-xs-4 col-4">
-                            book A
-                        </div>
-                        <div class="col-xs-4 col-4">
-                            book A
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="card mb-4 shadow-lg">
-                <div class="card-body">
-                    <h4 class="card-title text-center font-weight-bold">Libraries A</h4>
-                    <div class="row">
-                        <div class="col-xs-4 col-4">
-                            book A
-                        </div>
-                        <div class="col-xs-4 col-4">
-                            book A
-                        </div>
-                        <div class="col-xs-4 col-4">
-                            book A
+        @foreach($libraries as $librarie)
+            <div class="col-md-4">
+                <div class="card mb-4 shadow-lg">
+                    <div class="card-body">
+                        <h4 class="card-title text-center font-weight-bold">{{$librarie->title}}</h4>
+                        <div class="row">
+                            <div class="col-xs-4 col-4">
+                                book A
+                            </div>
+                            <div class="col-xs-4 col-4">
+                                book A
+                            </div>
+                            <div class="col-xs-4 col-4">
+                                book A
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="col-md-4">
-            <div class="card mb-4 shadow-lg">
-                <div class="card-body">
-                    <h4 class="card-title text-center font-weight-bold">Libraries A</h4>
-                    <div class="row">
-                        <div class="col-xs-4 col-4">
-                            book A
-                        </div>
-                        <div class="col-xs-4 col-4">
-                            book A
-                        </div>
-                        <div class="col-xs-4 col-4">
-                            book A
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
+        
+        @endforeach
     </div>
 
     <div class="modal fade" id="create" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"

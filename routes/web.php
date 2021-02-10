@@ -23,3 +23,4 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::post('/libraries/create', 'LibrariesController@create')->name('create.libraries');
 
+Route::get('/show', 'LibrariesController@show')->name('show.libraries');

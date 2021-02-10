@@ -17,4 +17,11 @@ class LibrariesController extends Controller
 
         return redirect()->back()->with('success', 'Libraries has been added');
     }
+
+    protected function show(Request $request){
+        $user=Auth::user();
+        $libraries= Libraries::where('user_id', $user->id)->get();
+        
+        return view('home')->with(['libraries'=> $libraries]);
+    }
 }
