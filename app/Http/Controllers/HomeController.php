@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Libraries;
+use App\Book;
+use Illuminate\Support\Facades\Auth;
 class HomeController extends Controller
 {
     /**
@@ -23,6 +25,9 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $user=Auth::user();
+        $libraries= Libraries::where('user_id', $user->id)->get();
+        $books= Book::where('user_id', $user->id)->get();
+        return view('home')->with(['libraries'=> $libraries, 'books' => $books]);
     }
 }

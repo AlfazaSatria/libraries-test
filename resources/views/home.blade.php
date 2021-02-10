@@ -8,12 +8,16 @@
     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#createBook">
         <i class="nav-icon fas fa-folder-plus"></i> &nbsp; Add Book
     </button>
+    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteLibraries">
+        <i class="nav-icon fas fa-trash"></i> Delete Libraries
+    </button>
+    <br><br><br>
     <div class="row">
         @foreach($libraries as $librarie)
             <div class="col-md-4">
-                <div class="card mb-4 shadow-lg">
-                    <div class="card-body">
-                        <h4 class="card-title text-center font-weight-bold">{{$librarie->title}}</h4>
+                <div class="card mb-4">
+                    <div class="card-body shadow-lg">
+                        <h4 class="card-title text-left font-weight-bold">{{$librarie->title}} </h4>
                         <div class="row">
                             @foreach($books as $book)
                             @if($book->libraries_id == $librarie->id)
@@ -83,16 +87,44 @@
                             <input type="text" name="title" class="form-control" id="title">
                         </div>
                         <select id="libraries_id" name="libraries_id" class="form-control @error('libraries_id') is-invalid @enderror">
-                            <option value="">-- Choose Libraries --</option>
+                            <option >-- Choose Libraries --</option>
                             @foreach ($libraries as $data)
                                 <option value="{{ $data->id }}">{{ $data->title }}</option>
                             @endforeach
                         </select>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button type="submit" class="btn btn-primary" >Add Libraries</button>
+                            <button type="submit" class="btn btn-primary" >Add Book</button>
                         </div>
                     </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="deleteLibraries" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Delete Libraries</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    @foreach ($libraries as $data)
+                    <form method="post" action="{{route ('delete.libraries', $data->id) }}">
+                        @csrf
+                        @method('delete')
+                                <button class="button btn btn-primary text-light font-weight-bold " value="{{$data->id}}" type="submit">{{$data->title}}</button>
+                                <br><br>
+                    </form>
+                    @endforeach
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
                 </div>
 
             </div>

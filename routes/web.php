@@ -23,6 +23,5 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::post('/libraries/create', 'LibrariesController@create')->name('create.libraries');
 Route::post('/books/create', 'BookController@create')->name('create.book');
-
-Route::get('/show', 'LibrariesController@show')->name('show.libraries');
-Route::get('/show/book', 'BookController@show')->name('show.book');
+Route::delete('/delete/{id}','LibrariesController@destroy')->name('delete.libraries');
+Route::delete('BookController@destroy')->name('delete.book');
