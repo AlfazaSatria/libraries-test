@@ -11,6 +11,9 @@
     <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteLibraries">
         <i class="nav-icon fas fa-trash"></i> Delete Libraries
     </button>
+    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteBook">
+        <i class="nav-icon fas fa-trash"></i> Delete Book
+    </button>
     <br><br><br>
     <div class="row">
         @foreach($libraries as $librarie)
@@ -116,6 +119,34 @@
                 <div class="modal-body">
                     @foreach ($libraries as $data)
                     <form method="post" action="{{route ('delete.libraries', $data->id) }}">
+                        @csrf
+                        @method('delete')
+                                <button class="button btn btn-primary text-light font-weight-bold " value="{{$data->id}}" type="submit">{{$data->title}}</button>
+                                <br><br>
+                    </form>
+                    @endforeach
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="deleteBook" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Delete Book</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    @foreach ($books as $data)
+                    <form method="post" action="{{route ('delete.book', $data->id) }}">
                         @csrf
                         @method('delete')
                                 <button class="button btn btn-primary text-light font-weight-bold " value="{{$data->id}}" type="submit">{{$data->title}}</button>

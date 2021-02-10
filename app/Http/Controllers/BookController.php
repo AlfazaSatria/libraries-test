@@ -27,4 +27,10 @@ class BookController extends Controller
         $books= Book::where('user_id', $user->id)->get();
         return view('home')->with(['libraries'=> $libraries, 'books' => $books]);
     }
+
+    protected function destroy($id){
+        $books= Book::findorfail($id);
+        $books->delete();
+        return redirect()->back()->with('delete', 'Book has been delete');
+    }
 }
